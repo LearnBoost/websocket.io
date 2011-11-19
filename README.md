@@ -1,4 +1,3 @@
-
 WebSocket.IO
 ============
 
@@ -59,7 +58,7 @@ var ws = require('websocket.io')
   , server = new ws.Server()
 
 // … somewhere in your http server code
-req.on('upgrade', function (req, socket, head) {
+server.on('upgrade', function (req, socket, head) {
   server.handleUpgrade(req, socket, head);
 });
 ```
