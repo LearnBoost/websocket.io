@@ -61,7 +61,7 @@ describe('hybi16 parser', function () {
         , packet = '81 05 48 65 6c 6c 6f'
         , gotData = false
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         data.should.equal('Hello');
       });
@@ -75,7 +75,7 @@ describe('hybi16 parser', function () {
         , packet = '81 93 34 83 a8 68 01 b9 92 52 4f a1 c6 09 59 e6 8a 52 16 e6 cb 00 5b a1 d5'
         , gotData = false
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         data.should.equal('5:::{"name":"echo"}');
       });
@@ -96,7 +96,7 @@ describe('hybi16 parser', function () {
           + getHexStringFromBuffer(mask(message, '34 83 a8 68'))
         , gotData = false
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         message.should.equal(data);
       });
@@ -117,7 +117,7 @@ describe('hybi16 parser', function () {
           + getHexStringFromBuffer(mask(message, '34 83 a8 68'))
         , gotData = false
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         message.should.equal(data);
       });
@@ -144,7 +144,7 @@ describe('hybi16 parser', function () {
 
         var gotData = false;
 
-        p.on('data', function (data) {
+        p.on('text', function (data) {
           gotData = true;
           message.should.equal(data);
         });
@@ -174,7 +174,7 @@ describe('hybi16 parser', function () {
           + getHexStringFromBuffer(mask(msgpiece2, '34 83 a8 68'))
         , gotData = false
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         message.should.equal(data);
       });
@@ -213,7 +213,7 @@ describe('hybi16 parser', function () {
           + getHexStringFromBuffer(mask(msgpiece2, '34 83 a8 68'))
         , gotData = false
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         message.should.equal(data);
       });

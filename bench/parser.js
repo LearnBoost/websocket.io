@@ -7,7 +7,8 @@ var benchmark = require('benchmark')
   , colors = require('colors')
   , ws = require('../lib/websocket.io')
   , Parser = ws.protocols['13'].Parser
-  , suite = new benchmark.Suite('Parser');
+  , suite = new benchmark.Suite('Parser')
+  , parser = new Parser();
 
 /**
  * Parser utilities
@@ -20,38 +21,34 @@ require('../support/parser-common')
  */
 
 suite.add('ping message', function () {
-  var p = new Parser()
-    , message = 'Hello'
+  var message = 'Hello'
     , packet = '89 FE ' + pack(4, message.length) + ' 34 83 a8 68 '
       + getHexStringFromBuffer(mask(message, '34 83 a8 68'))
 
-  p.add(getBufferFromHexString(packet));
+  parser.add(getBufferFromHexString(packet));
 });
 
 suite.add('ping with no data', function () {
-  var p = new Parser()
-    , packet = '89 00'
+  var packet = '89 00'
 
-  p.add(getBufferFromHexString(packet));
+  parser.add(getBufferFromHexString(packet));
 });
 
 suite.add('close message', function () {
-  var p = new Parser()
-    , packet = '88 00'
+  var packet = '88 00'
 
-  p.add(getBufferFromHexString(packet));
+  parser.add(getBufferFromHexString(packet));
+  parser.endPacket();
 });
 
 suite.add('masked text message', function () {
-  var p = new Parser()
-    , packet = '81 93 34 83 a8 68 01 b9 92 52 4f a1 c6 09 59 e6 8a 52 16 e6 cb 00 5b a1 d5'
+  var packet = '81 93 34 83 a8 68 01 b9 92 52 4f a1 c6 09 59 e6 8a 52 16 e6 cb 00 5b a1 d5'
 
-  p.add(getBufferFromHexString(packet));
+  parser.add(getBufferFromHexString(packet));
 });
 
 suite.add('binary data', function () {
-  var p = new Parser()
-    , length = 100
+  var length = 100
     , message = new Buffer(length)
 
   for (var i = 0; i < length; ++i) {
@@ -62,12 +59,11 @@ suite.add('binary data', function () {
     , packet = '82 ' + getHybiLengthAsHexString(length, true) + ' 34 83 a8 68 '
       + getHexStringFromBuffer(mask(message, '34 83 a8 68'))
 
-  p.add(getBufferFromHexString(packet));
+  parser.add(getBufferFromHexString(packet));
 });
 
 suite.add('binary data (long)', function () {
-  var p = new Parser()
-    , length = 200 * 1024
+  var length = 200 * 1024
     , message = new Buffer(length)
 
   for (var i = 0; i < length; ++i) {
@@ -78,7 +74,7 @@ suite.add('binary data (long)', function () {
     , packet = '82 ' + getHybiLengthAsHexString(length, false) + ' '
       + getHexStringFromBuffer(message)
 
-  p.add(getBufferFromHexString(packet));
+  parser.add(getBufferFromHexString(packet));
 });
 
 suite.on('cycle', function (bench, details) {
@@ -89,6 +85,7 @@ suite.on('cycle', function (bench, details) {
     , 'benchmark took '.grey + details.times.elapsed.toString().white + ' sec.'.grey
     , 
   ].join(', '.grey));
+  parser = new Parser();
 });
 
 if (!module.parent) {
