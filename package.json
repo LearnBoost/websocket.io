@@ -8,7 +8,7 @@
       , { "name": "Arnout Kazemier", "email": "info@3rd-eden.com" }
     ]
   , "devDependencies": {
-        "easy-websocket": "0.1.2"
+        "easy-websocket": "0.2.0"
       , "mocha": "0.0.1-alpha3"
       , "should": "0.3.2"
       , "colors": "*"
