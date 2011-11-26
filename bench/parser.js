@@ -8,13 +8,24 @@ var benchmark = require('benchmark')
   , ws = require('../lib/websocket.io')
   , Parser = ws.protocols['13'].Parser
   , suite = new benchmark.Suite('Parser')
-  , parser = new Parser();
 
 /**
  * Parser utilities
  */
 
 require('../support/parser-common')
+
+/**
+ * Setup parsers.
+ */
+
+suite.on('start', function () {
+  parser = new Parser
+});
+
+suite.on('cycle', function () {
+  parser = new Parser
+});
 
 /**
  * Benchmarks.
@@ -77,6 +88,10 @@ suite.add('binary data (long)', function () {
   parser.add(getBufferFromHexString(packet));
 });
 
+/**
+ * Output progress.
+ */
+
 suite.on('cycle', function (bench, details) {
   console.log('\n  ' + suite.name.grey, details.name.white.bold);
   console.log('  ' + [
@@ -85,8 +100,11 @@ suite.on('cycle', function (bench, details) {
     , 'benchmark took '.grey + details.times.elapsed.toString().white + ' sec.'.grey
     , 
   ].join(', '.grey));
-  parser = new Parser();
 });
+
+/**
+ * Run/export benchmarks.
+ */
 
 if (!module.parent) {
   suite.run();
