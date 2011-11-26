@@ -17,7 +17,7 @@ describe('hybi07-12 parser', function () {
         , packet = '81 05 48 65 6c 6c 6f'
         , gotData = false
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         data.should.equal('Hello');
       });
@@ -31,7 +31,7 @@ describe('hybi07-12 parser', function () {
         , packet = '81 93 34 83 a8 68 01 b9 92 52 4f a1 c6 09 59 e6 8a 52 16 e6 cb 00 5b a1 d5'
         , gotData = false
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         data.should.equal('5:::{"name":"echo"}');
       });
@@ -52,7 +52,7 @@ describe('hybi07-12 parser', function () {
           + getHexStringFromBuffer(mask(message, '34 83 a8 68'))
         , gotData = false
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         message.should.equal(data);
       });
@@ -73,7 +73,7 @@ describe('hybi07-12 parser', function () {
           + getHexStringFromBuffer(mask(message, '34 83 a8 68'))
         , gotData = false
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         message.should.equal(data);
       });
@@ -100,13 +100,13 @@ describe('hybi07-12 parser', function () {
     it('can parse a ping message', function () {
       var p = new Parser()
         , message = 'Hello'
-        , packet = '89 FE ' + pack(4, message.length) + ' 34 83 a8 68 '
+        , packet = '89 ' + getHybiLengthAsHexString(message.length, true) + ' 34 83 a8 68 '
           + getHexStringFromBuffer(mask(message, '34 83 a8 68'))
         , gotPing = false
 
       p.on('ping', function (data) {
         gotPing = true;
-        message.should.equal(data);
+        message.should.equal(data.toString());
       });
 
       p.add(getBufferFromHexString(packet));
@@ -144,7 +144,7 @@ describe('hybi07-12 parser', function () {
           + getHexStringFromBuffer(mask(msgpiece2, '34 83 a8 68'))
         , gotData = false;
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         message.should.equal(data);
       });
@@ -167,14 +167,14 @@ describe('hybi07-12 parser', function () {
         , packet1 = '01 FE ' + pack(4, msgpiece1.length) + ' 34 83 a8 68 '
           + getHexStringFromBuffer(mask(msgpiece1, '34 83 a8 68'))
         , pingMessage = 'Hello'
-        , pingPacket = '89 FE ' + pack(4, pingMessage.length) + ' 34 83 a8 68 '
+        , pingPacket = '89 ' + getHybiLengthAsHexString(pingMessage.length, true) + ' 34 83 a8 68 '
           + getHexStringFromBuffer(mask(pingMessage, '34 83 a8 68'))
         , msgpiece2 = message.substr(150)
         , packet2 = '80 FE ' + pack(4, msgpiece2.length) + ' 34 83 a8 68 '
           + getHexStringFromBuffer(mask(msgpiece2, '34 83 a8 68'))
         , gotData = false;
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         message.should.equal(data);
       });
@@ -183,7 +183,7 @@ describe('hybi07-12 parser', function () {
 
       p.on('ping', function (data) {
         gotPing = true;
-        pingMessage.should.equal(data);
+        pingMessage.should.equal(data.toString());
       });
 
       p.add(getBufferFromHexString(packet1));
@@ -206,14 +206,14 @@ describe('hybi07-12 parser', function () {
         , packet1 = '01 FE ' + pack(4, msgpiece1.length) + ' 34 83 a8 68 '
           + getHexStringFromBuffer(mask(msgpiece1, '34 83 a8 68'))
         , pingMessage = 'Hello'
-        , pingPacket = '89 FE ' + pack(4, pingMessage.length) + ' 34 83 a8 68 '
+        , pingPacket = '89 ' + getHybiLengthAsHexString(pingMessage.length, true) + ' 34 83 a8 68 '
           + getHexStringFromBuffer(mask(pingMessage, '34 83 a8 68'))
         , msgpiece2 = message.substr(150)
         , packet2 = '80 FE ' + pack(4, msgpiece2.length) + ' 34 83 a8 68 '
           + getHexStringFromBuffer(mask(msgpiece2, '34 83 a8 68'))
         , gotData = false
 
-      p.on('data', function (data) {
+      p.on('text', function (data) {
         gotData = true;
         message.should.equal(data);
       });
@@ -222,7 +222,7 @@ describe('hybi07-12 parser', function () {
 
       p.on('ping', function (data) {
         gotPing = true;
-        pingMessage.should.equal(data);
+        pingMessage.should.equal(data.toString());
       });
 
       var buffers = [];
