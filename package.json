@@ -7,9 +7,11 @@
       , { "name": "Einar Otto Stangvik", "email": "einaros@gmail.com" }
       , { "name": "Arnout Kazemier", "email": "info@3rd-eden.com" }
     ]
+  , "dependencies": {
+      "easy-websocket": "0.2.0"      
+  }
   , "devDependencies": {
-        "easy-websocket": "0.2.0"
-      , "mocha": "0.0.1-alpha3"
+      "mocha": "0.0.1-alpha3"
       , "should": "0.3.2"
       , "colors": "*"
       , "benchmark": "0.2.2"
