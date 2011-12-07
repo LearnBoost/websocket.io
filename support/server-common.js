@@ -4,7 +4,7 @@
  */
 
 var ws = require('../lib/websocket.io')
-  , Client = require('easy-websocket')
+  , Client = require('ws')
 
 /**
  * Creates a http.Server that listens on an ephemeral port.
