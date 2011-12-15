@@ -32,9 +32,9 @@ allows for interoperability with higher-level frameworks such as
 var ws = require('websocket.io')
   , server = ws.listen(3000)
 
-server.on('connection', function (client) {
-  client.on('message', function () { });
-  client.on('close', function () { });
+server.on('connection', function (socket) {
+  socket.on('message', function () { });
+  socket.on('close', function () { });
 });
 ```
 
@@ -45,9 +45,9 @@ var ws = require('websocket.io')
   , http = require('http').createServer().listen(3000)
   , server = ws.attach(http)
 
-server.on('connection', function (client) {
-  client.on('message', function () { });
-  client.on('close', function () { });
+server.on('connection', function (socket) {
+  socket.on('message', function () { });
+  socket.on('close', function () { });
 });
 ```
 
@@ -56,6 +56,10 @@ server.on('connection', function (client) {
 ```js
 var ws = require('websocket.io')
   , server = new ws.Server()
+
+server.on('connection', function (socket) {
+  socket.send('hi');
+});
 
 // …
 httpServer.on('upgrade', function (req, socket, head) {
