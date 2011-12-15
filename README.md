@@ -24,9 +24,9 @@ allows for interoperability with higher-level frameworks such as
 
 ## How to use
 
-### Standalone
+### Server
 
-#### Listening on a port
+#### (A) Listening on a port
 
 ```js
 var ws = require('websocket.io')
@@ -38,7 +38,7 @@ server.on('connection', function (socket) {
 });
 ```
 
-#### Intercepting WebSocket requests for a http.Server
+#### (B) Intercepting WebSocket requests for a http.Server
 
 ```js
 var ws = require('websocket.io')
@@ -51,7 +51,7 @@ server.on('connection', function (socket) {
 });
 ```
 
-### Passing in requests
+#### (C) Passing in requests
 
 ```js
 var ws = require('websocket.io')
