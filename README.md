@@ -57,7 +57,7 @@ server.on('connection', function (client) {
 var ws = require('websocket.io')
   , server = new ws.Server()
 
-// … somewhere in your http server code
+// …
 httpServer.on('upgrade', function (req, socket, head) {
   server.handleUpgrade(req, socket, head);
 });
