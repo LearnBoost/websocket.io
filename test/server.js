@@ -4,8 +4,8 @@
  */
 
 var ws = require('../lib/websocket.io')
-  , http = require('http')
   , should = require('should')
+  , http = require('http')
 
 /**
  * Tests.
@@ -117,11 +117,11 @@ describe('websocket server', function () {
 
             cl.close();
             cl.on('close', function () {
-              should(server.clients[0] == null);
+              should.strictEqual(server.clients[0], null);
 
               cl2.close();
               cl2.on('close', function () {
-                should(server.clients[1] == null);
+                should.strictEqual(server.clients[1], null);
                 server.close();
                 done();
               });
