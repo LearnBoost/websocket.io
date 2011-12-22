@@ -12,7 +12,7 @@
   }
   , "devDependencies": {
         "mocha": "*"
-      , "should": "0.3.2"
+      , "should": "*"
       , "colors": "*"
       , "benchmark": "0.2.2"
     }

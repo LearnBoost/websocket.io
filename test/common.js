@@ -1,9 +1,9 @@
 
 /**
- * Common dependencies.
+ * Require should.
  */
 
-var ws = require('../lib/websocket.io')
+should = require('should');
 
 /**
  * Require parser utilities.
