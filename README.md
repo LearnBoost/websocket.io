@@ -173,6 +173,10 @@ These are exposed by `require('websocket.io')`
 
 - `open`
     - Whether the socket is open for writing
+- `req`
+    - `http.ServerRequest` that originated the connection
+- `socket`
+    - `net.Stream` that originated the connection
 
 #### Methods
 
