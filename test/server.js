@@ -5,7 +5,9 @@
 
 var ws = require('../lib/websocket.io')
   , should = require('should')
+  , net = require('net')
   , http = require('http')
+  , Request = http.IncomingMessage || http.ServerRequest
 
 /**
  * Tests.
@@ -14,7 +16,7 @@ var ws = require('../lib/websocket.io')
 describe('websocket server', function () {
 
   describe('connections', function () {
-    it('fire a connection event', function (done) {
+    it('must fire a connection event', function (done) {
       listen(function (addr, server) {
         var cl = client(addr);
         server.on('connection', function (c) {
@@ -26,7 +28,20 @@ describe('websocket server', function () {
       });
     });
 
-    it('fire a close event when client closes', function (done) {
+    it('must keep a reference to the request that originated it', function (done) {
+      listen(function (addr, server) {
+        var cl = client(addr);
+        server.on('connection', function (c) {
+          c.req.should.be.an.instanceof(Request);
+          c.socket.should.be.an.instanceof(net.Stream);
+          cl.terminate();
+          server.close();
+          done();
+        });
+      });
+    });
+
+    it('must fire a close event when client closes', function (done) {
       listen(function (addr, server) {
         var cl = client(addr)
           , cc
@@ -44,7 +59,7 @@ describe('websocket server', function () {
       });
     });
 
-    it('fire a close event when server closes', function (done) {
+    it('must fire a close event when server closes', function (done) {
       listen(function (addr, server) {
         var cl = client(addr)
           , cc
