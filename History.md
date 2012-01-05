@@ -1,4 +1,9 @@
 
+0.1.4 / 2012-01-04
+==================
+
+  * `close` event fires in a different tick after calling Socket#close
+
 0.1.3 / 2012-01-02
 ==================
 

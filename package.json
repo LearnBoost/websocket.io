@@ -1,7 +1,7 @@
 {
     "name": "websocket.io"
   , "description": "Socket.IO websocket server"
-  , "version": "0.1.3"
+  , "version": "0.1.4"
   , "contributors": [
         { "name": "Guillermo Rauch", "email": "rauchg@gmail.com" }
       , { "name": "Einar Otto Stangvik", "email": "einaros@gmail.com" }
