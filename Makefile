@@ -6,7 +6,7 @@ REPORTER = dot
 test:
 	@./node_modules/.bin/mocha \
 		--require should \
-		--require $(shell pwd)/test/common \
+		--require test/common.js \
 		--reporter $(REPORTER) \
 		--growl \
 		$(TESTS)
