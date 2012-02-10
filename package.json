@@ -8,7 +8,7 @@
       , { "name": "Arnout Kazemier", "email": "info@3rd-eden.com" }
     ]
   , "dependencies": {
-      "ws": "0.4.0"
+      "ws": ">=0.4.0"
   }
   , "devDependencies": {
         "mocha": "*"
