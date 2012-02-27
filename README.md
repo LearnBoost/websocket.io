@@ -1,7 +1,7 @@
 WebSocket.IO
 ============
 
-[![Build Status](https://secure.travis-ci.org/learnboost/websocket.io.png)](http://travis-ci.org/learnboost/websocket.io)
+[![Build Status](https://secure.travis-ci.org/LearnBoost/websocket.io.png)](http://travis-ci.org/LearnBoost/websocket.io)
 
 WebSocket.IO is an abstraction of the websocket server previously used by Socket.IO.
 It has the broadest support for websocket protocol/specifications and an API that
