@@ -1,6 +1,5 @@
 
 TESTS = test/*.js
-BENCHMARKS = $(shell find bench -type f ! -name 'runner.js')
 REPORTER = dot
 
 test:
@@ -10,8 +9,5 @@ test:
 		--reporter $(REPORTER) \
 		--growl \
 		$(TESTS)
-
-bench:
-	@node $(PROFILEFLAGS) bench/runner.js $(BENCHMARKS)
 
 .PHONY: test bench

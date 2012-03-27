@@ -245,11 +245,6 @@ npm install
 ```
 $ make test
 ```
-## Benchmarks
-
-```
-$ make bench
-```
 
 ## License 
 
