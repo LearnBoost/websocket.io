@@ -152,7 +152,7 @@ These are exposed by `require('websocket.io')`
       - `logger` (`Object`/`Boolean`): logger object. If you want to customize the
         logger options, please supply a new `Logger` object (see API below). If you
         want to enable it, set this option to `true`.
-      - `client tracking` (`Boolean`): enables client tracking (`Server.clients`). 
+      - `clientTracking` (`Boolean`): enables client tracking (`Server.clients`).
         Defaults is `true`.
 - ``handleUpgrade``
     - Handles an incoming request that triggered an `upgrade` event

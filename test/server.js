@@ -212,7 +212,7 @@ describe('websocket server', function () {
     });
 
     it('can be disabled', function (done) {
-      listen({'client tracking': false}, function (addr, server) {
+      listen({'clientTracking': false}, function (addr, server) {
         var cl = client(addr);
 
         cl.on('open', function () {
