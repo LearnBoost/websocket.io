@@ -147,9 +147,13 @@ These are exposed by `require('websocket.io')`
     - **Parameters**
       - `Object`: optional, options object
     - **Options**
+      - `path` (`String`): If set, the server listens only on this path. By default,
+        it listens for `upgrade` events on any path.
       - `logger` (`Object`/`Boolean`): logger object. If you want to customize the
         logger options, please supply a new `Logger` object (see API below). If you
         want to enable it, set this option to `true`.
+      - `clientTracking` (`Boolean`): enables client tracking (`Server.clients`).
+        Defaults is `true`.
 - ``handleUpgrade``
     - Handles an incoming request that triggered an `upgrade` event
     - **Parameters**
