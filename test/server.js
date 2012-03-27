@@ -116,6 +116,44 @@ describe('websocket server', function () {
     });
   });
 
+  describe('request path', function() {
+    it('must be checked if present', function (done) {
+      listen({path: '/mypath'}, function (addr, server) {
+        var cl = client(addr, '/mypath')
+
+        cl.on('open', function () {
+          cl.close();
+          server.close();
+          done();
+        });
+      });
+    });
+
+    it('must be checked, connection rejected if not matches', function (done) {
+      listen({path: '/mypath'}, function (addr, server) {
+        var cl = client(addr, '/mypath2');
+        cl.on('open', function () {
+          cl.close();
+          server.close();
+          throw new Error('paths do not match');
+        });
+        done();
+      });
+    });
+
+    it('can be left null, so any path matches', function (done) {
+      listen(function (addr, server) {
+        var cl = client(addr, '/mypath');
+
+        cl.on('open', function () {
+          cl.close();
+          server.close();
+          done();
+        });
+      });
+    });
+  });
+
   describe('client tracking', function () {
     it('must have client objects', function (done) {
       listen(function (addr, server) {
@@ -169,6 +207,37 @@ describe('websocket server', function () {
               });
             });
           });
+        });
+      });
+    });
+
+    it('can be disabled', function (done) {
+      listen({'clientTracking': false}, function (addr, server) {
+        var cl = client(addr);
+
+        cl.on('open', function () {
+          server.clients.should.have.length(0);
+          server.clientsCount.should.equal(0);
+
+          var cl2 = client(addr);
+          cl2.on('open', function () {
+            server.clients.should.have.length(0);
+            server.clientsCount.should.equal(0);
+
+            cl.close();
+            cl.on('close', function () {
+              server.clients.should.have.length(0);
+              server.clientsCount.should.equal(0);
+
+              cl2.close();
+              cl2.on('close', function () {
+                server.clients.should.have.length(0);
+                server.clientsCount.should.equal(0);
+                server.close();
+                done();
+              });
+            })
+          });          
         });
       });
     });
