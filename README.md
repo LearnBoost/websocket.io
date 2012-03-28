@@ -250,6 +250,14 @@ npm install
 $ make test
 ```
 
+## Credits
+
+WebSocket.IO is possible thanks to the contributions by:
+
+- Einar Otto Stangvik [einaros@gmail.com]
+- Arnout Kazemier [info@3rd-eden.com]
+- Nico Kaiser [nico@kaiser.me]
+
 ## License 
 
 (The MIT License)

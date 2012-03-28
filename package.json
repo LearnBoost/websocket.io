@@ -6,6 +6,7 @@
         { "name": "Guillermo Rauch", "email": "rauchg@gmail.com" }
       , { "name": "Einar Otto Stangvik", "email": "einaros@gmail.com" }
       , { "name": "Arnout Kazemier", "email": "info@3rd-eden.com" }
+      , { "name": "Nico Kaiser", "email": "nico@kaiser.me" }
     ]
   , "dependencies": {
       "ws": "0.4.x"
