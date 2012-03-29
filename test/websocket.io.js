@@ -19,7 +19,6 @@ describe('websocket.io', function () {
   it('must expose public constructors', function () {
     ws.Socket.should.be.a('function');
     ws.Server.should.be.a('function');
-    ws.Logger.should.be.a('function');
     ws.protocols.drafts.should.be.a('function');
     ws.protocols['7'].should.be.a('function');
     ws.protocols['8'].should.be.a('function');

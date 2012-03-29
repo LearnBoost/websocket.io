@@ -101,7 +101,6 @@ These are exposed by `require('websocket.io')`
 - `version` _(String)_: protocol revision number
 - `Server` _(Function)_: server constructor
 - `Socket` _(Function)_: client constructor
-- `Logger` _(Function)_: logger constructor
 - `protocols` _(Object)_: hash of different `Socket` constructors for each protocol
     - `drafts` _(Function)_: client for drafts 75/76/00
     - `7` _(Function)_: client for protocol 7
@@ -149,9 +148,6 @@ These are exposed by `require('websocket.io')`
     - **Options**
       - `path` (`String`): If set, the server listens only on this path. By default,
         it listens for `upgrade` events on any path.
-      - `logger` (`Object`/`Boolean`): logger object. If you want to customize the
-        logger options, please supply a new `Logger` object (see API below). If you
-        want to enable it, set this option to `true`.
       - `clientTracking` (`Boolean`): enables client tracking (`Server.clients`).
         Defaults is `true`.
 - ``handleUpgrade``
@@ -199,26 +195,6 @@ These are exposed by `require('websocket.io')`
     - **Returns** `Socket`
 
 <hr><br>
-
-### Logger
-
-#### Methods
-
-- **constructor**
-    - Initializes the logger
-    - **Parameters**
-      - `Object`: optional, options object
-    - **Options**
-      - `enabled` (`Boolean`): whether to output to the console (`false`).
-      - `log level` (`Number`): log level (`3`).
-      - `colors` (`Boolean`): whether to output colors (`true`).
-
-#### Methods
-
-- **log**
-- **debug**
-- **warn**
-- **info**
 
 ## Support
 
