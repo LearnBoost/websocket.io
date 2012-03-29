@@ -10,25 +10,13 @@ This class is exposed by `require('websocket.io')`.
 
 Protocol revision number
 
-### wsio.Server
-
-* wsio.Server
-
-Server constructor
-
-### wsio.Socket
-
-* wsio.Socket
-
-Client constructor
-
 ### wsio.protocols
 
 * Object
   * `drafts` Function
   * `hybi` Function
 
-Clients for drafts 75/76/00, protocols 7/8/13.
+Client constructors for drafts 75/76/00, protocols 7/8/13.
 
 ### wsio.listen(port, [fn], [options])
 
@@ -40,17 +28,12 @@ Creates an `http.Server` which listens on the given port and attaches WS to it. 
 
 `fn` is the callback for `listen`. The options object can be supplied as second parameter as well. See `wsio.Server` constructor API for `options`.
 
-Returns `wsio.Server`.
-
 ### wsio.attach(server, [options])
 
 * `server` http.Server
 * `options` Object
 
 Captures `upgrade` requests for a `http.Server`. In other words, makes a regular `http.Server` websocket-compatible. See `wsio.Server` constructor API for `options`.
-
-Returns `wsio.Server`.
-
 
 ## Class wsio.Server
 
@@ -62,11 +45,7 @@ Is an `EventEmitter`
   * `path` String
   * `clientTracking` Boolean
 
-Initializes the server.
-
-If `path` is set, he server listens only on this path. By default, it listens for `upgrade` events on any path.
-
-`clientTracking` enables client tracking (`Server.clients`). Defaults is `true`.
+Initializes the server. If `path` is set, he server listens only on this path. By default, it listens for `upgrade` events on any path. `clientTracking` enables client tracking (`Server.clients`). Defaults is `true`.
 
 ### server.handleUpgrade(req, socket, head)
 
@@ -100,10 +79,6 @@ Fired when a new connection is established.
 ## Class wsio.Socket
 
 Is an `EventEmitter`
-
-## new wsio.Socket(req)
-
-* `req` http.ServerRequest
 
 ### socket.req
 
