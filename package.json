@@ -9,7 +9,8 @@
       , { "name": "Nico Kaiser", "email": "nico@kaiser.me" }
     ]
   , "dependencies": {
-      "ws": "0.4.x"
+        "debug": "*"
+      , "ws": "0.4.x"
   }
   , "devDependencies": {
         "mocha": "*"
