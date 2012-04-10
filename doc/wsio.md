@@ -92,6 +92,25 @@ Request that originated the connection
 
 Stream that originated the connection
 
+
+### socket.readyState
+
+* {String}
+
+Can be `opening`, `open`, `closed`.
+
+### socket.name
+
+* {String}
+
+Protocol name: `websocket-hixie`, `websocket`
+
+### socket.protocolVersion
+
+* {String}
+
+Protocol version: `hixie-75`, `hixie-76`, `hybi`
+
 ### socket.send(data)
 
 * `data` {String}
