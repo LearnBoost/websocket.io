@@ -156,7 +156,7 @@ describe('websocket server', function () {
 
   describe('client tracking', function () {
     it('must have client objects', function (done) {
-      listen(function (addr, server) {
+      listen({ clientTracking: true }, function (addr, server) {
         var cl = client(addr)
 
         cl.on('open', function () {
@@ -185,7 +185,7 @@ describe('websocket server', function () {
     });
 
     it('must have client count', function (done) {
-      listen(function (addr, server) {
+      listen({ clientTracking: true }, function (addr, server) {
         var cl = client(addr)
 
         cl.on('open', function () {
@@ -211,8 +211,8 @@ describe('websocket server', function () {
       });
     });
 
-    it('can be disabled', function (done) {
-      listen({'clientTracking': false}, function (addr, server) {
+    it('not on by default', function (done) {
+      listen(function (addr, server) {
         var cl = client(addr);
 
         cl.on('open', function () {
