@@ -45,7 +45,7 @@ Is an `EventEmitter`
   * `path` {String}
   * `clientTracking` {Boolean}
 
-Initializes the server. If `path` is set, the server listens only on this path. By default, it listens for `upgrade` events on any path. `clientTracking` enables client tracking (`Server.clients`). Defaults is `true`.
+Initializes the server. If `path` is set, the server listens only on this path. By default, it listens for `upgrade` events on any path. `clientTracking` enables client tracking (`Server.clients`). Defaults to `false`.
 
 ### server.handleUpgrade(req, socket, head)
 
