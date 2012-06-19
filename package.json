@@ -1,7 +1,7 @@
 {
     "name": "websocket.io"
   , "description": "Socket.IO websocket server"
-  , "version": "0.1.6"
+  , "version": "0.2.0"
   , "contributors": [
         { "name": "Guillermo Rauch", "email": "rauchg@gmail.com" }
       , { "name": "Einar Otto Stangvik", "email": "einaros@gmail.com" }
@@ -10,7 +10,7 @@
     ]
   , "dependencies": {
         "debug": "*"
-      , "ws": "0.4.x"
+      , "ws": "0.4.18"
   }
   , "devDependencies": {
         "mocha": "*"

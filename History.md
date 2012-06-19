@@ -1,4 +1,18 @@
 
+0.2.0 / 2012-06-19
+==================
+
+  * Check if socket is writable before finishing handshake
+  * Implement readyState and async connection opening
+  * Check for readyState before writing
+  * Fix wrong interface for hybi protocol
+  * Remove logger, use debug for logging
+  * Disable client tracking in `ws` (hybi)
+  * client tracking -> clientTracking
+  * Use `ws` server and parsers for hybi protocols
+  * Handle socket "timeout" event
+  * Add missing Sec-WebSocket-Protocol header to hybi protocols
+
 0.1.6 / 2012-02-27
 ==================
 
