@@ -7,6 +7,7 @@
       , { "name": "Einar Otto Stangvik", "email": "einaros@gmail.com" }
       , { "name": "Arnout Kazemier", "email": "info@3rd-eden.com" }
       , { "name": "Nico Kaiser", "email": "nico@kaiser.me" }
+      , { "name": "Andor Goetzendorff", "email": "andor.g@mytum.de" }
     ]
   , "dependencies": {
         "debug": "*"
