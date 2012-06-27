@@ -79,7 +79,7 @@ describe('websocket server', function () {
           cc = c;
         });
       });
-    })
+    });
   });
 
   describe('messages', function () {
@@ -116,7 +116,7 @@ describe('websocket server', function () {
     });
   });
 
-  describe('request path', function() {
+  describe('request path', function () {
     it('must be checked if present', function (done) {
       listen({path: '/mypath'}, function (addr, server) {
         var cl = client(addr, '/mypath')
@@ -175,6 +175,28 @@ describe('websocket server', function () {
               cl2.close();
               cl2.on('close', function () {
                 should.strictEqual(server.clients[1], null);
+                server.close();
+                done();
+              });
+            });
+          });
+        });
+      });
+    });
+
+    it('must fill up gaps in the clients array', function (done) {
+      listen(function (addr, server) {
+        var cl = client(addr);
+        cl.on('open', function () {
+          server.clients.should.have.length(1);
+          var cl2 = client(addr);
+          cl2.on('open', function () {
+            server.clients.should.have.length(2);
+            cl.close();
+            cl.on('close', function () {
+              var cl3 = client(addr);
+              cl3.on('open', function () {
+                server.clients.should.have.length(2);
                 server.close();
                 done();
               });
