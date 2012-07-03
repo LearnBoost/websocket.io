@@ -1,4 +1,12 @@
 
+0.2.1 / 2012-07-03
+==================
+
+  * Bumped ws
+  * Emit headers event for drafts protocol
+  * Added `data` event to `Socket`
+  * Improves `clientTracking` memory efficiency [ruxkor]
+
 0.2.0 / 2012-06-19
 ==================
 
