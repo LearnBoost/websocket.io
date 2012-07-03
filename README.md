@@ -90,8 +90,105 @@ socket.onclose = function() {
 
 ## API
 
-See doc/ directory for API docs.
+### Server
 
+<hr><br>
+
+#### Top-level
+
+These are exposed by `require('websocket.io')`:
+
+##### Properties
+
+- `version` _(String)_: websocket.io version
+- `protocols` _(Object)_: constructors for drafts 75/76/00, protocols 7/8/13.
+
+##### Methods
+
+- `listen`
+    - Creates an `http.Server` which listens on the given port and attaches WS
+      to it. It returns `501 Not Implemented` for regular http requests.
+    - **Parameters**
+      - `Number`: port to listen on
+      - `Object`: optional options object. See `Server` for options details.
+      - `Function`: callback for `listen`
+    - **Returns** `Server`
+- `attach`
+    - Captures `upgrade` requests for a `http.Server`. In other words, makes a regular `http.Server` websocket-compatible.
+    - **Parameters**
+      - `http.Server`: server to attach to.
+      - `Object`: optional, options object. See `Server` for options details.
+    - **Returns** `Server`
+
+<hr><br>
+
+#### Server
+
+The main server/manager. _Inherits from EventEmitter_.
+
+##### Properties
+
+- `clients` _(Object)_: table of all connected clients. This property is
+  not set when the `Server` option `clientTracking` is `false`.
+- `clientsCount` _(Number)_: total count of connected clients. This property is
+  not set when the `Server` option `clientTracking` is `false`.
+
+##### Events
+
+- `connection`
+    - Fired when a new connection is established. 
+    - **Arguments**
+      - `Socket`: a Socket object
+
+##### Methods
+
+- **constructor**
+    - Initializes the server
+    - **Options**
+      - path (`String`): if set, server only listens to request for this path
+      - clientTracking (`Boolean`): enables client tracking. The
+        `Server#clients` property only is available when this is true (`true`)
+- `handleUpgrade`
+
+<hr><br>
+
+#### Socket
+
+A representation of a client. _Inherits from EventEmitter_.
+
+##### Properties
+
+- `req` _(http.ServerRequest)_: Request that originated the connection.
+- `socket` _(net.Socket)_: Stream that originated the connection.
+- `readyState` _(String)_: `opening`, `open`, `closed`.
+- `name` _(String)_: `websocket-hixie`, `websocket`.
+- `protocolVersion` _(String)_: `hixie-75`, `hixie-76` and `hybi`.
+
+##### Events
+
+- `close`
+    - Fired when the connection is closed.
+- `message`/`data`
+    - Fired when data is received
+    - **Arguments**
+      - `String`: utf-8 string
+- `error`
+    - Fired when an error occurs.
+    - **Arguments**
+      - `Error`: error object
+
+##### Methods
+
+- `send` / `write`
+    - Sends a message.
+    - **Parameters**
+      - `String`: utf-8 string with outgoing data
+    - **Returns** `Socket` for chaining
+- `close` / `end`
+    - Closes the socket
+    - **Returns** `Socket` for chaining
+- `destroy`
+    - Forcibly closes the socket.
 
 ## Support
 
