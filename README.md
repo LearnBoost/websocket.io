@@ -69,25 +69,7 @@ httpServer.on('upgrade', function (req, socket, head) {
 });
 ```
 
-### Client-side example
-
-```js
-var ws = new WebSocket("ws://host:port/");        
-
-socket.onopen = function() {
- //do something when connection estabilished
-};
-
-socket.onmessage = function(message) {
- //do something when message arrives
-};
-
-socket.onclose = function() {
- //do something when connection close
-};
-
-```
-### Filter client with origin 
+#### (D) Filter clients with origin 
 
 ~~~js
 
@@ -109,7 +91,24 @@ server.on('connection', function (socket) {
 });
 ~~~
 
+### Client-side example
 
+```js
+var ws = new WebSocket("ws://host:port/");        
+
+socket.onopen = function() {
+ //do something when connection estabilished
+};
+
+socket.onmessage = function(message) {
+ //do something when message arrives
+};
+
+socket.onclose = function() {
+ //do something when connection close
+};
+
+```
 
 ## API
 
