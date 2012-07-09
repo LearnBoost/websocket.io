@@ -69,6 +69,28 @@ httpServer.on('upgrade', function (req, socket, head) {
 });
 ```
 
+#### (D) Filter clients with origin 
+
+~~~js
+
+var options = {
+  originCheck: function(origin, checked) {
+    
+    //check the origin to filter
+    //call with true if checked, otherwise false;
+    checked(true); 
+  }  
+};
+
+var ws = require('websocket.io')
+  , server = ws.listen(3000, null, options);
+
+server.on('connection', function (socket) {
+  socket.on('message', function () { });
+  socket.on('close', function () { });
+});
+~~~
+
 ### Client-side example
 
 ```js
