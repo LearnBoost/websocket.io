@@ -82,6 +82,85 @@ describe('websocket server', function () {
     });
   });
 
+  describe('origin policy', function() {
+    it('must accept client with no originCheck method', function (done) {
+     listen(function(addr, server) {
+
+        var cl = client(addr);
+
+        cl.on('open', function() {
+          cl.send('hello world')
+        });
+
+        server.on('connection', function(c) {
+          c.on('message', function(data) {
+            data.should.equal('hello world');
+            cl.close();
+            server.close();
+            done();
+          });
+        });
+
+      })
+    });
+
+    it('must accept if originChecked', function (done) {
+    
+      var message = 'this is not the message';
+      var options = {
+        originCheck: function(origin, checked) {
+
+          message = 'originChecked';
+          checked(true);
+        }
+      };
+
+      listen(options, function(addr, server) {
+
+        var cl = client(addr);
+
+        cl.on('open', function() {
+          cl.send(message)
+        });
+
+        server.on('connection', function(c) {
+          c.on('message', function(data) {
+            data.should.equal('originChecked');
+            cl.close();
+            server.close();
+            done();
+          });
+        });
+
+      })
+    });
+
+    it('must deny if originChecked failed', function (done) {
+    
+      var message = 'this is not the message';
+      var options = {
+        originCheck: function(origin, checked) {
+
+          message = 'originCheckedFailed';
+          checked(false);
+        }
+      };
+
+      listen(options, function(addr, server) {
+
+        var cl = client(addr);
+        cl.on('close', function() {
+          message.should.equal('originCheckedFailed');
+          done();
+        });
+
+      })
+    });
+
+
+
+  });
+
   describe('messages', function () {
     it('can be received', function (done) {
       listen(function (addr, server) {
