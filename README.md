@@ -74,15 +74,15 @@ httpServer.on('upgrade', function (req, socket, head) {
 ```js
 var ws = new WebSocket("ws://host:port/");        
 
-socket.onopen = function() {
+ws.onopen = function() {
  //do something when connection estabilished
 };
 
-socket.onmessage = function(message) {
+ws.onmessage = function(message) {
  //do something when message arrives
 };
 
-socket.onclose = function() {
+ws.onclose = function() {
  //do something when connection close
 };
 
