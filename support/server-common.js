@@ -45,7 +45,12 @@ listen = function (options, fn) {
  */
 
 client = function (addr, path) {
-  var cl = new Client('ws://' + addr.address + ':' + addr.port + (path || ''));
+  var address = addr.address;
+  if (addr.family == 'IPv6') {
+    address = '[' + address + ']';
+  }
+
+  var cl = new Client('ws://' + address + ':' + addr.port + (path || ''));
   cl.on('error', function (e) {
     throw e;
   });

@@ -1,4 +1,10 @@
 
+0.2.2 / 2017-01-02
+==================
+
+  * Updated EventEmitter to work with node v7
+  * Allow mocha tests to run on ipv6 machines
+
 0.2.1 / 2012-07-03
 ==================
 
