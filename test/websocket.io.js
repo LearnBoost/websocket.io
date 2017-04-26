@@ -3,6 +3,7 @@
  * Test dependencies.
  */
 
+var should = require('should');
 var ws = require('../lib/websocket.io')
   , http = require('http')
 
@@ -17,12 +18,12 @@ describe('websocket.io', function () {
   });
 
   it('must expose public constructors', function () {
-    ws.Socket.should.be.a('function');
-    ws.Server.should.be.a('function');
-    ws.protocols.drafts.should.be.a('function');
-    ws.protocols['7'].should.be.a('function');
-    ws.protocols['8'].should.be.a('function');
-    ws.protocols['13'].should.be.a('function');
+    ws.Socket.should.be.a.Function;
+    ws.Server.should.be.a.Function;
+    ws.protocols.drafts.should.be.a.Function;
+    ws.protocols['7'].should.be.a.Function;
+    ws.protocols['8'].should.be.a.Function;
+    ws.protocols['13'].should.be.a.Function;
   });
 
   it('must connect', function (done) {
