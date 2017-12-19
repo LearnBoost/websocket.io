@@ -48,5 +48,5 @@ ws.on('connection', function (client) {
  */
 
 server.listen(3000, function () {
-  console.error('\033[96m ∞ listening on http://127.0.0.1:3000 \033[39m');
+  console.error('\\033[96m ∞ listening on http://127.0.0.1:3000 \\033[39m');
 });
