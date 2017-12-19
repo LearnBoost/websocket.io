@@ -12,9 +12,9 @@
     ]
   , "dependencies": {
         "debug": "*"
-        "dgram": "^1.0.1",
-        "semver": "^5.4.1",
-        "ws": "^3.3.2",
+        , "dgram": "^1.0.1"
+        , "semver": "^5.4.1"
+        , "ws": "^3.3.2"
   }
   , "devDependencies": {
         "mocha": "*"
