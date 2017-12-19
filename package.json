@@ -8,10 +8,13 @@
       , { "name": "Arnout Kazemier", "email": "info@3rd-eden.com" }
       , { "name": "Nico Kaiser", "email": "nico@kaiser.me" }
       , { "name": "Andor Goetzendorff", "email": "andor.g@mytum.de" }
+      , { "name": "Jeff Galbraith", "email": "jgalbraith@intelliviewtech.com" }
     ]
   , "dependencies": {
         "debug": "*"
-      , "ws": "0.4.20"
+        , "dgram": "^1.0.1"
+        , "semver": "^5.4.1"
+        , "ws": "^3.3.2"
   }
   , "devDependencies": {
         "mocha": "*"
